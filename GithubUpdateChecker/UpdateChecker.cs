@@ -59,9 +59,6 @@ namespace GithubUpdateChecker
             if (string.IsNullOrEmpty(currentVersion) || string.IsNullOrEmpty(latestVersion))
                 throw new ArgumentNullException();
 
-            currentVersion = currentVersion.Replace(".", "");
-            latestVersion = latestVersion.Replace(".", "");
-
             CleanVersionStrings(ref currentVersion, ref latestVersion);
 
             Int32.TryParse(currentVersion, out int currentVersionNum);

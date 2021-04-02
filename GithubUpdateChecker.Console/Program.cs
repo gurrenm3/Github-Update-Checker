@@ -1,9 +1,6 @@
 ﻿namespace GithubUpdateChecker.Console
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     class Program
@@ -17,7 +14,9 @@
             var releaseInfo = await updater.GetLatestReleaseAsync();
             Console.WriteLine($"Got release info from Gtihub");
 
-            const string currentVersion = "0.2.9";
+            Console.WriteLine("What is the current version of your software?");
+            string currentVersion = Console.ReadLine();
+            
             Console.WriteLine($"Current Version is: {currentVersion}");
             Console.WriteLine($"Latest Version is: {releaseInfo.TagName}");
 
