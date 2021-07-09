@@ -4,7 +4,7 @@
 //
 //    using GithubUpdateChecker;
 //
-//    var githubReleaseSchema = GithubReleaseSchema.FromJson(jsonString);
+//    var githubReleaseSchema = GithubReleaseInfo.FromJson(jsonString);
 
 namespace GithubUpdateChecker
 {
@@ -15,7 +15,7 @@ namespace GithubUpdateChecker
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class GithubReleaseSchema
+    public partial class GithubReleaseInfo
     {
         [JsonProperty("url")]
         public Uri Url { get; set; }
@@ -171,14 +171,14 @@ namespace GithubUpdateChecker
         public bool SiteAdmin { get; set; }
     }
 
-    public partial class GithubReleaseSchema
+    public partial class GithubReleaseInfo
     {
-        public static List<GithubReleaseSchema> FromJson(string json) => JsonConvert.DeserializeObject<List<GithubReleaseSchema>>(json, GithubUpdateChecker.Converter.Settings);
+        public static List<GithubReleaseInfo> FromJson(string json) => JsonConvert.DeserializeObject<List<GithubReleaseInfo>>(json, GithubUpdateChecker.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this List<GithubReleaseSchema> self) => JsonConvert.SerializeObject(self, GithubUpdateChecker.Converter.Settings);
+        public static string ToJson(this List<GithubReleaseInfo> self) => JsonConvert.SerializeObject(self, GithubUpdateChecker.Converter.Settings);
     }
 
     internal static class Converter
