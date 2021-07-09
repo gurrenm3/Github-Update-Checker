@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GithubReleaseInfo-SystemJson.cs" />
-    <Compile Include="GithubReleaseSchema-Newtonsoft.cs" />
+    <Compile Include="GithubReleaseInfo-Newtonsoft.cs" />
     <Compile Include="UpdateChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
