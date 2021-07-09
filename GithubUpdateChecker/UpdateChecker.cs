@@ -22,7 +22,6 @@ namespace GithubUpdateChecker
             ReleaseURL = url;
         }
 
-
         private HttpClient CreateHttpClient()
         {
             client = new HttpClient();
@@ -32,24 +31,29 @@ namespace GithubUpdateChecker
         }
 
 
-        public async Task<List<GithubReleaseSchema>> GetReleaseInfoAsync() => GetReleaseInfoAsync(ReleaseURL)?.Result;
+        public async Task<List<GithubReleaseInfo>> GetReleaseInfoAsync()
+        {
+            return await GetReleaseInfoAsync(ReleaseURL);
+        }
 
-        public async Task<List<GithubReleaseSchema>> GetReleaseInfoAsync(string url)
+        public async Task<List<GithubReleaseInfo>> GetReleaseInfoAsync(string url)
         {
             var releaseJson = await client.GetStringAsync(url);
-            return GithubReleaseSchema.FromJson(releaseJson);
+            return GithubReleaseInfo.FromJson(releaseJson);
         }
 
-
-        public async Task<GithubReleaseSchema> GetLatestReleaseAsync() => GetLatestReleaseAsync(ReleaseURL).Result;
-
-        public async Task<GithubReleaseSchema> GetLatestReleaseAsync(string url)
+        public async Task<GithubReleaseInfo> GetLatestReleaseAsync()
         {
-            return GetReleaseInfoAsync(url).Result[0];
+            return await GetLatestReleaseAsync(ReleaseURL);
         }
 
+        public async Task<GithubReleaseInfo> GetLatestReleaseAsync(string url)
+        {
+            var releases = await GetReleaseInfoAsync(url);
+            return releases[0];
+        }
 
-        public bool IsUpdate(string currentVersion, GithubReleaseSchema latestReleaseInfo)
+        public bool IsUpdate(string currentVersion, GithubReleaseInfo latestReleaseInfo)
         {
             return IsUpdate(currentVersion, latestReleaseInfo?.TagName);
         }

@@ -4,7 +4,7 @@
 //
 //    using GithubUpdateChecker;
 //
-//    var githubReleaseSchema = GithubReleaseInfo.FromJson(jsonString);
+//    var githubReleaseInfo = GithubReleaseInfo.FromJson(jsonString);
 
 namespace GithubUpdateChecker
 {
